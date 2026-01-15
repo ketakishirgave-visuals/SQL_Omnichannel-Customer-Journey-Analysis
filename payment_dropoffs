@@ -1,0 +1,12 @@
+-- explanation:
+-- finds payment methods causing the highest funnel drop-offs
+-- highlights revenue leakage areas
+
+select
+    device,
+    payment_method,
+    count(*) as dropoffs
+from transactions
+where payment_status = 'failed'
+group by device, payment_method
+order by dropoffs desc;
