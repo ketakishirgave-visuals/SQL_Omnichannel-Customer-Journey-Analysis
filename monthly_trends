@@ -1,0 +1,11 @@
+-- explanation:
+-- analyzes revenue and transaction volume by month
+-- highlights seasonal performance patterns
+
+select
+    date_trunc('month', transaction_date) as month,
+    sum(amount) as total_revenue,
+    count(*) as transactions
+from transactions
+group by month
+order by month;
