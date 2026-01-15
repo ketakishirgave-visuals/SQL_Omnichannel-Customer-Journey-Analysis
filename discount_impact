@@ -1,0 +1,12 @@
+-- explanation:
+-- compares revenue contribution of discounted vs non-discounted transactions
+
+select
+    case
+        when discount_applied = 'yes' then 'discounted'
+        else 'non_discounted'
+    end as discount_type,
+    sum(amount) as total_revenue,
+    count(*) as transactions
+from transactions
+group by discount_type;
