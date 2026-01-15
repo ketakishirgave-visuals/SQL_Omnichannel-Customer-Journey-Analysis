@@ -1,0 +1,11 @@
+-- explanation:
+-- identifies repeat purchasers across category, channel, and device
+
+select
+    category,
+    channel,
+    device,
+    count(distinct user_id) as repeat_customers
+from transactions
+group by category, channel, device
+having count(distinct transaction_id) > 1;
