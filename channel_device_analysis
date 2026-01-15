@@ -1,0 +1,10 @@
+-- explanation:
+-- compares conversion efficiency across devices and channels
+
+select
+    device,
+    channel,
+    count(distinct case when funnel_stage = 'purchase' then user_id end) * 1.0
+    / count(distinct user_id) as conversion_rate
+from funnel_processed
+group by device, channel;
