@@ -1,0 +1,10 @@
+-- explanation:
+-- calculates rolling 7-day revenue and transaction volume
+-- smooths daily fluctuations to reveal short-term trends
+
+select
+    transaction_date,
+    sum(amount) over (order by transaction_date rows between 6 preceding and current row) as rolling_7d_revenue,
+    count(*) over (order by transaction_date rows between 6 preceding and current row) as rolling_7d_transactions
+from transactions
+order by transaction_date;
