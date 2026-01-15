@@ -1,0 +1,12 @@
+-- explanation:
+-- identifies which campaign and channel
+-- drive the highest funnel completions
+
+select
+    campaign,
+    channel,
+    count(*) as completed_funnels
+from funnel_processed
+where funnel_stage = 'purchase'
+group by campaign, channel
+order by completed_funnels desc;
